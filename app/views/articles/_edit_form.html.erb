@@ -1,9 +1,9 @@
-<button type="button" data-toggle="modal" data-target="#myEdit" class="btn">Create a new Article?</button>
+<button type="button" data-toggle="modal" data-target="#myEdit" class="btn">Edit this Article?</button>
 
 <div id="myEdit" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="myModalLabel">New Article</h3>
+    <h3 id="myModalLabel">Edit Article</h3>
   </div>
   <div class="modal-body">
     <%= form_for(@article) do |f| %>
