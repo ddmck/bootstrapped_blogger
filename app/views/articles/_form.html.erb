@@ -1,12 +1,12 @@
-<button type="button" data-toggle="modal" data-target="#myEdit" class="btn">Create a new Article?</button>
+<button type="button" data-toggle="modal" data-target="#myModal" class="btn">Create a new Article?</button>
 
-<div id="myEdit" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
     <h3 id="myModalLabel">New Article</h3>
   </div>
   <div class="modal-body">
-    <%= form_for(@article) do |f| %>
+    <%= form_for(@article, html: {multipart: true}) do |f| %>
   <ul>
     <% @article.errors.full_messages.each do |error| %>
       <li><%= error %></li>
@@ -14,20 +14,27 @@
   </ul>
   <p>
     <%= f.label :title %>
-    <%= f.text_field :title, :style => "width:520px;" %>
+    <%= f.text_field :title, :style => "width:100%;" %>
   </p>
   <p>
     <%= f.label :body %>
-    <%= f.text_area :body, rows: 6, :style => "width:520px;"  %>
+    <%= f.text_area :body, rows: 6, :style => "width:100%;" %>
   </p>
   <p>
     <%= f.label :tag_list %>
-    <%= f.text_field :tag_list, :style => "width:520px;" %>
+    <%= f.text_field :tag_list, :style => "width:100%;" %>
+  </p>
+  <p>
+    <% if @article.image.exists? %>
+      <%= image_tag @article.image.url(:medium), class: "img-polaroid"  %>
+    <% end %>
+    <%= f.label :image, "Attach an Image" %>
+    <%= f.file_field :image, :style => "width:100%;" %>
   </p>
   </div>
   <div class="modal-footer">
       <p>
-        <%= f.submit 'Submit', class: "btn btn-primary" %>
+        <%= f.submit 'Submit', class: "btn btn-primary", :style => "width:100%;"  %>
       </p>
     <% end %>
   </div>

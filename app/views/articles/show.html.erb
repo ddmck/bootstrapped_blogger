@@ -1,5 +1,9 @@
 <h2><%= @article.title %></h2>
 
+<% if @article.image? %>
+  <p><%= image_tag @article.image.url, class: "img-polaroid" %></p>
+<% end %>
+
 <p><%= @article.body %></p>
 
 <p>
@@ -11,12 +15,12 @@
 
 <div class="row">
   <div class="span2">
-<%= render partial: 'comments/form' %>
+    <%= render partial: 'comments/form' %>
   </div>
   <div class="span6 well well-small", style="background:white; border:none; box-shadow:none">
     <p style="font-size:20px"><strong>Comments (<%= @article.comments.size %>)</strong></p>
-<%= render partial: 'articles/comment', collection: @article.comments %>
+    <%= render partial: 'articles/comment', collection: @article.comments %>
   </div>
 </div>
-<%= link_to "Back to Articles List", articles_path, class: "btn" %> <%= link_to "Delete this article", article_path, method: :delete, confirm: "Really delete the article?", class: "btn btn-danger" %> <%= render partial: 'articles/edit_form' %>
+<%= link_to "Back to Articles List", articles_path, class: "btn" %> <%= link_to "<i class='icon-trash'></i> Delete this article".html_safe, article_path, method: :delete, confirm: "Really delete the article?", class: "btn btn-danger" %> <%= render partial: 'articles/edit_form' %>
 
