@@ -1,9 +1,12 @@
 <h1>All Articles</h1>
 
-<ul class="unstyled">
+<ul class="thumbnails">
   <% @articles.each do |article| %>
-    <li>
-      <%= link_to article.title, article_path(article) %>
+    <li class="span4">
+      <div class="thumbnail">
+        <p style="overflow:hidden; max-height:150px"><%= link_to image_tag(article.image.url(:medium), :style => "width:100%; border-radius:3px"), article_path(article) %></p>
+        <%= link_to article.title, article_path(article) %>
+      </div>
     </li> 
   <% end %>
 </ul>
