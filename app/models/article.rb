@@ -3,7 +3,7 @@ class Article < ActiveRecord::Base
   has_many :comments
   has_many :taggings
   has_many :tags, through: :taggings
-  has_attached_file :image, styles: { medium: "300x200>", thumb: "100x66>" }
+  has_attached_file :image, styles: { medium: "300x200#", thumb: "100x66>" }
 
   def tag_list
     tags.join(", ")
