@@ -1,17 +1,22 @@
 <h2><%= @article.title %></h2>
 
-<% if @article.image? %>
-  <p><%= image_tag @article.image.url, class: "img-polaroid" %></p>
-<% end %>
 
-<p><%= @article.body %></p>
-
-<p>
-  Tags:
-  <% @article.tags.each do |tag| %>
-    <%= link_to tag.name, tag_path(tag) %>
-  <% end %>
-</p>
+<div class="row">
+  <div class="span6 offset2">
+    <% if @article.image? %>
+      <p><%= image_tag @article.image.url, class: "img-polaroid" %></p>
+    <% end %>
+    <p><%= raw(@article.body) %></p>
+  </div>
+  <div class="span2">
+    <p class="well well-small">
+      Tags:
+      <% @article.tags.each do |tag| %>
+        <%= link_to tag.name, tag_path(tag) %>
+      <% end %>
+    </p>
+  </div>
+</div>
 
 <div class="row">
   <div class="span2">
