@@ -1,0 +1,17 @@
+<div class="navbar">
+  <div class="navbar-inner">
+    <ul class="nav pull-left">
+      <li><%= link_to "Back to all Articles", articles_path %></li>
+    </ul>
+    <ul class="nav pull-right">  
+      <% if logged_in? %>
+        <li ><%= link_to "Logged in as #{current_user.username}, logout?", logout_path %></li>
+        <li> <%= link_to "<i class='icon-trash'></i> Delete this article".html_safe, article_path, method: :delete, confirm: "Really delete the article?", class: "text-warning" %></li>
+        <li ><%= render partial: 'articles/edit_form', class: "pull-right" %></li>
+
+      <% else %>
+        <li><%= link_to "Author? Login", login_path %></li>
+      <% end %>
+    </ul>
+  </div>
+</div>
