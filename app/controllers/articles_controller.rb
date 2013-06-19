@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-  before_filter :require_login, except: [:show, :index]
+  before_filter :require_login, except: [:show, :index, :incPageView]
   
   def index
     @articles = Article.all
@@ -8,6 +8,7 @@ class ArticlesController < ApplicationController
 
   def show
     @article = Article.find(params[:id])
+    incPageView(@article)
     @comment = Comment.new
     @comment.article_id = @article.id
   end
@@ -18,6 +19,7 @@ class ArticlesController < ApplicationController
 
   def create
     @article = Article.new(params[:article])
+    @article.views = 0
     @article.save
 
     flash.notice = "Successfully created '#{@article.title}'"
@@ -42,5 +44,10 @@ class ArticlesController < ApplicationController
 
     flash.notice = "Successfully deleted '#{@article.title}'!"
     redirect_to articles_path
+  end
+
+  def incPageView(article)
+    article.views += 1
+    article.update_attributes(params[:views])
   end
 end
