@@ -2,7 +2,8 @@ class ArticlesController < ApplicationController
   before_filter :require_login, except: [:show, :index, :incPageView]
   
   def index
-    @articles = Article.all
+    @articles = Article.order("created_at DESC")
+    @top3 = Article.order("views DESC").first(3)
     @article = Article.new
   end
 
