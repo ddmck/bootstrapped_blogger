@@ -23,9 +23,9 @@ development:
 production:
   adapter: postgresql
   encoding: unicode
-  database: bootstrapped_blogger_development
+  database: myapp_production
   pool: 5
-  username: root
+  username: app
   password:
 
   # Connect on a TCP socket. Omitted by default since the client uses a
