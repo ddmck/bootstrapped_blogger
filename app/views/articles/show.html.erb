@@ -2,7 +2,7 @@
   <div class="span6 offset2">
     <h2><%= @article.title %></h2>
     <% if @article.image? %>
-      <p><%= image_tag @article.image.url, class: "polaroid" %></p>
+      <p><%= image_tag @article.image.url, class: "img-polaroid" %></p>
     <% end %>
     <p><%= raw(@article.body) %></p>
   </div>
